@@ -1,0 +1,27 @@
+<!-- ضع هذا مباشرة بعد <body ...> وقبل <header id="hd"> في index.html و gallery.html و success.html -->
+<div id="boot" role="status" aria-live="polite">
+  <div class="boot-in">
+    <span class="boot-logo">Darya<i>Nails</i></span>
+    <div class="boot-bar" aria-hidden="true"><i></i></div>
+    <p id="boot-msg"></p>
+    <button type="button" class="btn o sm" id="boot-retry" onclick="location.reload()"></button>
+  </div>
+</div>
+<script>
+/* يعمل فوراً قبل تحميل أي شيء: يعرض رسالة إن تأخر الاتصال، ويُغلق الشاشة تلقائياً كحل أخير */
+(function(){
+  var ru;try{ru=(localStorage.getItem("dnLang")||"ru")!=="en"}catch(e){ru=true}
+  var T=ru?{slow:"Медленное соединение… ещё немного",off:"Нет соединения с интернетом",retry:"Повторить"}
+          :{slow:"Slow connection… almost there",off:"No internet connection",retry:"Retry"};
+  var b=document.getElementById("boot"),m=document.getElementById("boot-msg"),r=document.getElementById("boot-retry");
+  r.textContent=T.retry;
+  function say(s){m.textContent=s;m.className="show"}
+  var t1=setTimeout(function(){say(navigator.onLine?T.slow:T.off)},4000);
+  var t2=setTimeout(function(){b.classList.add("slow");say(navigator.onLine?T.slow:T.off)},9000);
+  /* إن تأخر common.js أكثر من 15 ثانية نُظهر الصفحة بدل الشاشة العالقة */
+  var t3=setTimeout(function(){document.body.classList.add("ready");b.remove()},15000);
+  addEventListener("offline",function(){say(T.off)});
+  new MutationObserver(function(_,o){if(!document.getElementById("boot")){clearTimeout(t1);clearTimeout(t2);clearTimeout(t3);o.disconnect()}})
+    .observe(document.body,{childList:true});
+})();
+</script>

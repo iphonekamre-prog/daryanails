@@ -1,0 +1,140 @@
+/* ==========================================================
+   mobile.css — phone-friendly layer (load AFTER style.css and loader.css)
+   Goal: calm, compact, easy to scan, nothing oversized.
+   Only affects screens <= 760px (plus a few safe global fixes).
+   ========================================================== */
+
+/* global: empty photo captions never show an empty dark strip */
+.w figcaption:empty{display:none}
+
+@media(max-width:760px){
+  :root{--pad:16px;--r:18px}
+  html{scroll-padding-top:68px;-webkit-text-size-adjust:100%}
+  body{font-size:15px;line-height:1.55;background-attachment:scroll!important}   /* fixed backgrounds are janky on phones */
+
+  /* ---------- Calmer motion (easier on the eyes, lighter on battery) ---------- */
+  .hero::before,.hero::after{display:none}
+  .card:hover,.w:hover,.ch:hover,.btn:hover,.abp:hover,.gal-keys li:hover{transform:none}
+  .card:hover .pic img,.w:hover img{transform:none}
+  header.site{backdrop-filter:none;background:var(--bg)}
+
+  /* ---------- Header ---------- */
+  header.site{padding:8px var(--pad);gap:10px}
+  .brand{font-size:23px}
+  .tools{gap:8px}
+  .ic{width:40px;height:40px}
+  nav.main a{padding:14px 4px;font-size:16px}          /* easy to tap */
+  #hcall{padding:8px 14px;font-size:13px}
+
+  /* ---------- Section rhythm ---------- */
+  .sec{padding:34px var(--pad)}
+  .sh{margin-bottom:18px}
+  h2{font-size:clamp(28px,8vw,34px);line-height:1.12}
+  .sub{font-size:14.5px}
+  .more-btn{margin-top:18px;width:100%}
+  a.more-btn{width:100%}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:26px var(--pad) 30px;gap:0;min-height:0}
+  .hero h1{font-size:clamp(44px,15vw,60px);line-height:.95}
+  .hero h1 i{margin-left:.15em}
+  .hero p{font-size:15.5px;margin:14px 0 20px}
+  .hero-tags{margin-top:14px}
+  .cta{width:100%;gap:10px}
+  .cta .btn{flex:1 1 140px;padding:13px 16px}
+
+  /* ---------- Service cards: compact "list rows" (photo left, text right) ---------- */
+  .grid{grid-template-columns:1fr;gap:12px}
+  .card{flex-direction:row;align-items:stretch;border-radius:16px}
+  .card .pic{flex:none;width:112px;aspect-ratio:auto;min-height:132px}
+  .tag{top:8px;padding:2px 9px;font-size:11.5px}
+  .tag.off{left:8px}.tag.kd{right:8px}
+  .cb{padding:12px 14px;min-width:0}
+  .cb h3{font-size:20px;line-height:1.15}
+  .cb p{font-size:13.5px;margin:4px 0 8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .pr{padding-bottom:8px}
+  .pr b{font-size:21px}
+  .pr .dur{margin-left:8px;font-size:12px;padding:2px 9px}
+  .ca{gap:12px}
+  .lnk{font-size:14px}
+
+  /* ---------- Photo grids: always 2 neat columns ---------- */
+  .wg,.gal-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .w,.gal-grid .w{border-radius:14px}
+  .w figcaption{font-size:15px;padding:24px 10px 9px}
+  /* home teaser keeps its own layout (big first photo, then pairs) */
+  .hw{grid-template-columns:1fr 1fr;gap:10px}
+  .hw .w:nth-child(n){grid-column:auto}
+  .hw .w img,.hw .w:first-child img{aspect-ratio:4/5}
+
+  /* ---------- About ---------- */
+  .ab{gap:18px}
+  .abp{border-radius:20px}
+  .abp img{aspect-ratio:4/3}
+  .chk{gap:8px;font-size:14.5px}
+
+  /* ---------- Booking ---------- */
+  .book{gap:16px}
+  .cardx{padding:18px;border-radius:20px}
+  #form{gap:16px}
+  .two{grid-template-columns:1fr;row-gap:16px}
+  .two.svc-row{grid-template-columns:1fr}
+  input,select,textarea,.dd-btn{font-size:16px;padding:12px 13px}   /* 16px = no auto-zoom on iPhone */
+  label.dt input{width:100%}
+  /* time slots: tidy 2-column grid instead of ragged wrapping */
+  .chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .chips legend{grid-column:1/-1}
+  .chip{display:flex}
+  .chip span,.chip input:checked+span{display:block;width:100%;max-width:none;text-align:center;padding:11px 8px;font-size:14px}
+  .up{padding:18px 14px}
+  .up b{font-size:21px}
+  .prev img{width:60px;height:60px}
+  /* services dropdown becomes a comfortable bottom sheet */
+  .dd-list{position:fixed;left:10px;right:10px;top:auto;bottom:10px;max-height:68vh;min-width:0;max-width:none;border-radius:20px;z-index:90;box-shadow:0 -10px 60px rgba(0,0,0,.45)}
+  .dd-o{padding:14px 12px;font-size:15.5px}
+  .dprice{padding:10px 12px}
+  .info h3{font-size:30px;margin-bottom:12px}
+  .ch{padding:10px 12px;gap:12px;grid-template-columns:40px 1fr}
+  .ch i{width:40px;height:40px}
+  .ch b{font-size:15.5px}
+  .book .btn{padding:15px}
+
+  /* ---------- Gallery page ---------- */
+  .gal-hero{padding:22px var(--pad) 4px}
+  .back-home{margin-bottom:14px;padding:7px 14px;font-size:13px}
+  .gal-hero h1{font-size:clamp(36px,11vw,46px)}
+  .gal-desc{font-size:14.5px;line-height:1.6}
+  .gal-keys{gap:8px;margin-top:18px}
+  .gal-keys li{padding:11px 14px;gap:12px;border-radius:16px}
+  .gk-i{width:38px;height:38px}
+  .gal-keys b{font-size:17px}.gal-keys span{font-size:13px}
+  .gal-sec{padding-top:18px}
+  .pagination{margin-top:26px;gap:6px}
+  .pagination button{width:40px;height:40px}
+  .gal-cta-sec{padding-bottom:40px}
+
+  /* ---------- Recommended / success pages ---------- */
+  .page-h{padding:28px var(--pad) 4px}
+  .page-h h1{font-size:clamp(38px,12vw,52px)}
+  .rec{grid-template-columns:1fr;gap:14px}
+  .rc{padding:20px}
+  .done{padding:28px var(--pad)}
+  .done-card{border-radius:22px}
+  .tick{width:84px;height:84px}
+
+  /* ---------- Footer & toast ---------- */
+  footer.site{padding:24px var(--pad)}
+  .toast{bottom:16px;font-size:14px}
+}
+
+/* very small phones */
+@media(max-width:360px){
+  .card .pic{width:96px}
+  .brand{font-size:21px}
+  .chips{grid-template-columns:1fr}
+}
+
+/* touch screens: never rely on hover */
+@media(hover:none){
+  .btn:hover,.card:hover,.ch:hover{box-shadow:none}
+}

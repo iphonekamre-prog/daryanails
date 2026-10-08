@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Darya Nails — Заявка отправлена</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#B0204F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%85%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600&subset=cyrillic,latin&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="loader.css">
+<link rel="stylesheet" href="success.css">
+</head>
+<body data-page="success" data-title="title.ok">
+<div id="boot" role="status" aria-live="polite">
+  <div class="boot-in">
+    <span class="boot-logo">Darya<i>Nails</i></span>
+    <div class="boot-bar" aria-hidden="true"><i></i></div>
+    <p id="boot-msg"></p>
+    <button type="button" class="btn o sm" id="boot-retry" onclick="location.reload()"></button>
+  </div>
+</div>
+<script>
+/* يعمل فوراً قبل تحميل أي شيء: يعرض رسالة إن تأخر الاتصال، ويُغلق الشاشة تلقائياً كحل أخير */
+(function(){
+  var ru;try{ru=(localStorage.getItem("dnLang")||"ru")!=="en"}catch(e){ru=true}
+  var T=ru?{slow:"Медленное соединение… ещё немного",off:"Нет соединения с интернетом",retry:"Повторить"}
+          :{slow:"Slow connection… almost there",off:"No internet connection",retry:"Retry"};
+  var b=document.getElementById("boot"),m=document.getElementById("boot-msg"),r=document.getElementById("boot-retry");
+  r.textContent=T.retry;
+  function say(s){m.textContent=s;m.className="show"}
+  var t1=setTimeout(function(){say(navigator.onLine?T.slow:T.off)},4000);
+  var t2=setTimeout(function(){b.classList.add("slow");say(navigator.onLine?T.slow:T.off)},9000);
+  /* إن تأخر common.js أكثر من 15 ثانية نُظهر الصفحة بدل الشاشة العالقة */
+  var t3=setTimeout(function(){document.body.classList.add("ready");b.remove()},15000);
+  addEventListener("offline",function(){say(T.off)});
+  new MutationObserver(function(_,o){if(!document.getElementById("boot")){clearTimeout(t1);clearTimeout(t2);clearTimeout(t3);o.disconnect()}})
+    .observe(document.body,{childList:true});
+})();
+</script>
+<header id="hd"></header>
+
+<main id="top">
+  <section class="ok-wrap">
+    <div class="ok-head">
+      <div class="ok-badge" aria-hidden="true">
+        <svg viewBox="0 0 52 52" width="64" height="64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <circle class="ok-ring" cx="26" cy="26" r="23"/>
+          <path class="ok-tick" d="M15 27l8 8 14-16"/>
+        </svg>
+      </div>
+      <p class="eyebrow" id="okno" hidden></p>
+      <h1 data-i18n="ok.h"></h1>
+      <p class="ok-lead" id="oktext"></p>
+    </div>
+
+    <div class="cardx ok-card" id="okcard" hidden>
+      <dl class="ok-list" id="oklist"></dl>
+    </div>
+
+    <div class="cardx ok-steps">
+      <h2 data-i18n="ok.next"></h2>
+      <ol>
+        <li><i>1</i><span data-i18n="ok.s1"></span></li>
+        <li><i>2</i><span data-i18n="ok.s2"></span></li>
+        <li><i>3</i><span data-i18n="ok.s3"></span></li>
+      </ol>
+    </div>
+
+    <div class="ok-actions">
+      <a class="btn" id="okwa" href="#" target="_blank" rel="noopener" data-i18n="ok.wa"></a>
+      <button class="btn o" id="okcal" type="button" data-i18n="ok.cal" hidden></button>
+      <a class="btn o" id="okmap" href="#" target="_blank" rel="noopener" data-i18n="ok.map"></a>
+    </div>
+    <div class="ok-links">
+      <a href="index.html" data-i18n="ok.home"></a>
+      <span aria-hidden="true">·</span>
+      <a href="index.html#book" data-i18n="ok.again"></a>
+    </div>
+  </section>
+</main>
+
+<footer id="ft"></footer>
+<script type="module" src="common.js"></script>
+<script type="module" src="success.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Darya Nails — студия маникюра, Керчь</title>
+<meta name="description" content="Darya Nails — авторский маникюр и нейл-арт в Керчи. Запись онлайн, ул. Орджоникидзе, 33.">
+<meta name="theme-color" content="#B0204F">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Darya Nails — студия маникюра, Керчь">
+<meta property="og:description" content="Авторский маникюр и нейл-арт. Запись онлайн.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%85%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BeautySalon","name":"Darya Nails","alternateName":"Дарья Нейлс","telephone":"+79785100511","address":{"@type":"PostalAddress","streetAddress":"ул. Орджоникидзе, 33, помещение 5","addressLocality":"Керчь","addressCountry":"RU"},"sameAs":["https://m.vk.ru/id803607577"]}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600&subset=cyrillic,latin&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="home" data-title="title.home">
+<header id="hd"></header>
+
+<main id="top">
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-t">
+      <h1>Darya<i>Nails</i></h1>
+      <ul class="hero-tags" data-i18n-aria="hero.tags.aria">
+        <li><a href="#services" data-i18n="nav.svc"></a></li>
+        <li><a href="#pedicure" data-i18n="nav.ped"></a></li>
+        <li><a href="#treatment" data-i18n="nav.trt"></a></li>
+      </ul>
+      <p id="herop" data-i18n="hero.p"></p>
+      <div class="cta">
+        <a class="btn" href="#book" data-i18n="hero.book"></a>
+        <a class="btn o" href="#works" data-i18n="hero.works"></a>
+      </div>
+    </div>
+    <div class="arch">
+      <img id="himg" src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=900&q=80" data-i18n-alt="hero.alt" alt="" onerror="this.remove()">
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="sec" id="services" hidden>
+    <header class="sh"><h2 data-i18n="svc.h"></h2><p class="sub" data-i18n="svc.sub"></p></header>
+    <div class="grid" id="svc"></div>
+    <button class="btn o more-btn" id="svc-more" type="button" data-i18n="more" hidden></button>
+  </section>
+
+  <!-- Pedicure -->
+  <section class="sec cat" id="pedicure" hidden>
+    <header class="sh"><h2 data-i18n="ped.h"></h2><p class="sub" data-i18n="ped.sub"></p></header>
+    <div class="grid" id="ped"></div>
+    <button class="btn o more-btn" id="ped-more" type="button" data-i18n="more" hidden></button>
+  </section>
+
+  <!-- Treatment -->
+  <section class="sec cat" id="treatment" hidden>
+    <header class="sh"><h2 data-i18n="trt.h"></h2><p class="sub" data-i18n="trt.sub"></p></header>
+    <div class="grid" id="trt"></div>
+    <button class="btn o more-btn" id="trt-more" type="button" data-i18n="more" hidden></button>
+  </section>
+
+  <!-- Works -->
+  <section class="sec" id="works" hidden>
+    <header class="sh"><h2 data-i18n="works.h"></h2><p class="sub" data-i18n="works.sub"></p></header>
+    <div class="wg" id="wg"></div>
+    <button class="btn o more-btn" id="wg-more" type="button" data-i18n="more" hidden></button>
+  </section>
+
+  <!-- About -->
+  <section class="sec" id="about">
+    <div class="ab">
+      <figure class="abp">
+        <img id="mimg" src="images/master.jpg" data-i18n-alt="about.alt" alt="" loading="lazy" onerror="this.closest('figure').remove()">
+      </figure>
+      <div>
+        <h2 data-i18n="about.h"></h2>
+        <p class="role" id="arole" data-i18n="about.role"></p>
+        <p class="sub" id="atext" data-i18n="about.text"></p>
+        <ul class="chk">
+          <li data-i18n="about.l1"></li>
+          <li data-i18n="about.l2"></li>
+          <li data-i18n="about.l3"></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking + contacts -->
+  <section class="sec" id="book">
+    <header class="sh"><h2 data-i18n="book.h"></h2><p class="sub" data-i18n="book.sub"></p></header>
+    <div class="book">
+      <aside class="cardx info" id="contact">
+        <h3 data-i18n="ct.h"></h3>
+        <address>
+          <div id="ad" data-i18n="ct.addr"></div>
+          <span id="adh" data-i18n="ct.hint"></span>
+        </address>
+        <div class="chs">
+          <a class="ch main" id="cphl" href="tel:+79785100511">
+            <i aria-hidden="true">☎</i>
+            <div><b data-i18n="ct.call"></b><span id="cph">+7 978 510-05-11</span></div>
+          </a>
+          <a class="ch" id="cwa" href="https://wa.me/79785100511" target="_blank" rel="noopener">
+            <i aria-hidden="true">WA</i>
+            <div><b data-i18n="ct.wa"></b><span data-i18n="ct.wa.s"></span></div>
+          </a>
+          <a class="ch" id="cvk" href="https://m.vk.ru/id803607577" target="_blank" rel="noopener">
+            <i aria-hidden="true">VK</i>
+            <div><b data-i18n="ct.vk"></b><span data-i18n="ct.vk.s"></span></div>
+          </a>
+        </div>
+      </aside>
+
+      <form id="form" class="cardx" novalidate>
+        <div class="two">
+          <label><span data-i18n="f.name"></span><input name="name" autocomplete="name" required><small class="er" data-i18n="f.name.er"></small></label>
+          <label><span data-i18n="f.phone"></span><input name="phone" type="tel" autocomplete="tel" placeholder="+7 978 000-00-00" required><small class="er" data-i18n="f.phone.er"></small></label>
+        </div>
+        <div class="two">
+          <label><span data-i18n="f.design"></span><select name="design" id="design"></select></label>
+          <label><span data-i18n="f.date"></span><input name="date" type="date"></label>
+        </div>
+<fieldset class="chips">
+  <legend data-i18n="f.time"></legend>
+  <label class="chip"><input type="radio" name="time" value="" checked><span data-i18n="time.any"></span></label>
+  <label class="chip"><input type="radio" name="time" value="9:00–11:00"><span>9:00–11:00</span></label>
+  <label class="chip"><input type="radio" name="time" value="11:00–13:00"><span>11:00–13:00</span></label>
+  <label class="chip"><input type="radio" name="time" value="13:00–15:00"><span>13:00–15:00</span></label>
+  <label class="chip"><input type="radio" name="time" value="15:00–17:00"><span>15:00–17:00</span></label>
+  <label class="chip"><input type="radio" name="time" value="17:00–19:00"><span>17:00–19:00</span></label>
+</fieldset>
+        <div class="up" id="up" tabindex="0" role="button">
+          <input name="ref" type="file" accept="image/*" id="ref" multiple hidden>
+          <b data-i18n="f.up.t"></b>
+          <span data-i18n="f.up.s"></span>
+          <div class="prev" id="prev"></div>
+        </div>
+        <label><span data-i18n="f.note"></span><textarea name="note" rows="2" data-i18n-ph="f.note.ph"></textarea></label>
+        <button class="btn" type="submit" id="send" data-i18n="f.submit"></button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<dialog id="lb"><img id="lbi" alt=""></dialog>
+<footer id="ft"></footer>
+<script type="module" src="common.js"></script>   
+<script type="module" src="script.js"></script>   
+
+</body>
+</html>

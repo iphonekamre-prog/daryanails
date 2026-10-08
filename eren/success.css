@@ -1,0 +1,44 @@
+/* success.css — "request sent" page */
+.ok-wrap{max-width:720px;margin:auto;padding:clamp(36px,7vw,72px) var(--pad) 72px;display:grid;gap:22px}
+.ok-head{text-align:center;display:grid;justify-items:center;gap:6px}
+.ok-head h1{font:italic 600 clamp(38px,6vw,58px)/1.05 var(--serif);color:var(--ink)}
+.ok-lead{color:var(--mut);max-width:30em;margin-top:8px}
+
+/* animated check */
+.ok-badge{width:104px;height:104px;border-radius:50%;display:grid;place-items:center;margin-bottom:14px;color:var(--on);
+  background:radial-gradient(circle at 30% 25%,color-mix(in srgb,var(--acc) 82%,#fff),var(--acc) 55%,var(--acc-deep));
+  box-shadow:0 0 0 10px color-mix(in srgb,var(--acc) 12%,transparent),0 22px 44px -18px var(--acc);
+  animation:okPop .7s var(--e) both}
+.ok-ring{stroke-dasharray:145;stroke-dashoffset:145;stroke-opacity:.45;animation:okDraw .8s .15s var(--e) forwards}
+.ok-tick{stroke-dasharray:40;stroke-dashoffset:40;animation:okDraw .5s .6s var(--e) forwards}
+@keyframes okPop{from{opacity:0;transform:scale(.7)}}
+@keyframes okDraw{to{stroke-dashoffset:0}}
+
+/* details */
+.ok-card{padding:clamp(8px,2vw,14px) clamp(18px,3vw,30px)}
+.ok-list{display:grid}
+.ok-row{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}
+.ok-row:last-child{border-bottom:0}
+.ok-row dt{color:var(--mut);font-size:14px;font-weight:600}
+.ok-row dd{margin:0;text-align:right;font-weight:600;overflow-wrap:anywhere}
+.ok-row.pr dd{color:var(--acc);font-size:18px}
+
+/* steps */
+.ok-steps h2{font:italic 600 28px/1.1 var(--serif);margin-bottom:14px}
+.ok-steps ol{list-style:none;padding:0;display:grid;gap:14px}
+.ok-steps li{display:flex;gap:14px;align-items:flex-start;color:var(--mut)}
+.ok-steps li i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:700 14px var(--sans);font-style:normal;
+  color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,transparent)}
+.ok-steps li span{padding-top:3px}
+
+.ok-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.ok-links{display:flex;gap:10px;justify-content:center;color:var(--mut);font-size:14.5px}
+.ok-links a{font-weight:600;transition:color .3s}
+.ok-links a:hover{color:var(--acc)}
+
+/* gentle staggered entrance */
+.ok-head>*:not(.ok-badge),.ok-card,.ok-steps,.ok-actions,.ok-links{animation:okUp .6s var(--e) both}
+.ok-head h1{animation-delay:.2s}.ok-lead{animation-delay:.3s}.ok-card{animation-delay:.4s}
+.ok-steps{animation-delay:.5s}.ok-actions{animation-delay:.6s}.ok-links{animation-delay:.7s}
+@keyframes okUp{from{opacity:0;transform:translateY(14px)}}
+@media(max-width:560px){.ok-actions .btn{flex:1 1 100%}.ok-row{flex-direction:column;gap:2px}.ok-row dd{text-align:left}}

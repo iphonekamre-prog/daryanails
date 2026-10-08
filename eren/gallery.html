@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Darya Nails — Наши работы</title>
+<meta name="description" content="Портфолио Darya Nails: реальные работы мастера, авторский маникюр и нейл-арт в Керчи.">
+<meta name="theme-color" content="#B0204F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%85%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600&subset=cyrillic,latin&display=swap" rel="stylesheet">
+<script type="speculationrules">{"prerender":[{"urls":["index.html"],"eagerness":"eager"}]}</script>
+<!-- Apply the saved theme BEFORE first paint (prevents the white flash between pages) -->
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("dnTheme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light")}catch(e){}</script>
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="loader.css">
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body data-page="gallery" data-title="title.gallery">
+<div id="boot" role="status" aria-live="polite">
+  <div class="boot-in">
+    <span class="boot-logo">Darya<i>Nails</i></span>
+    <div class="boot-bar" aria-hidden="true"><i></i></div>
+    <p id="boot-msg"></p>
+    <button type="button" class="btn o sm" id="boot-retry" onclick="location.reload()"></button>
+  </div>
+</div>
+<script>
+/* يعمل فوراً قبل تحميل أي شيء: يعرض رسالة إن تأخر الاتصال، ويُغلق الشاشة تلقائياً كحل أخير */
+(function(){
+  var ru;try{ru=(localStorage.getItem("dnLang")||"ru")!=="en"}catch(e){ru=true}
+  var T=ru?{slow:"Медленное соединение… ещё немного",off:"Нет соединения с интернетом",retry:"Повторить"}
+          :{slow:"Slow connection… almost there",off:"No internet connection",retry:"Retry"};
+  var b=document.getElementById("boot"),m=document.getElementById("boot-msg"),r=document.getElementById("boot-retry");
+  r.textContent=T.retry;
+  function say(s){m.textContent=s;m.className="show"}
+  var t1=setTimeout(function(){say(navigator.onLine?T.slow:T.off)},4000);
+  var t2=setTimeout(function(){b.classList.add("slow");say(navigator.onLine?T.slow:T.off)},9000);
+  /* إن تأخر common.js أكثر من 15 ثانية نُظهر الصفحة بدل الشاشة العالقة */
+  var t3=setTimeout(function(){document.body.classList.add("ready");b.remove()},15000);
+  addEventListener("offline",function(){say(T.off)});
+  new MutationObserver(function(_,o){if(!document.getElementById("boot")){clearTimeout(t1);clearTimeout(t2);clearTimeout(t3);o.disconnect()}})
+    .observe(document.body,{childList:true});
+})();
+</script>
+<header id="hd"></header>
+
+<main id="top">
+  <section class="gal-hero">
+    <a href="index.html" class="back-home" data-i18n="gallery.back"></a>
+    <p class="eyebrow" data-i18n="gal.eyebrow"></p>
+    <h1 data-i18n="works.h"></h1>
+    <p class="gal-desc" data-i18n="gal.desc"></p>
+    <ul class="gal-keys">
+      <li><i class="gk-i"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></i><div><b data-i18n="gal.k1"></b><span data-i18n="gal.k1d"></span></div></li>
+      <li><i class="gk-i"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg></i><div><b data-i18n="gal.k2"></b><span data-i18n="gal.k2d"></span></div></li>
+      <li><i class="gk-i"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12l3 5-9 11L3 9z"/><path d="M3 9h18M9 4l-1 5 4 11M15 4l1 5-4 11"/></svg></i><div><b data-i18n="gal.k3"></b><span data-i18n="gal.k3d"></span></div></li>
+    </ul>
+    <p class="gal-count" id="gcount"></p>
+  </section>
+
+  <section class="sec gal-sec" id="gtop">
+    <div class="wg gal-grid" id="gallery-grid"></div>
+    <p class="gal-empty" id="gempty" data-i18n="gal.empty" hidden></p>
+    <nav class="pagination" id="pagination" data-i18n-aria="gal.pages" aria-label="Pages"></nav>
+  </section>
+
+  <section class="sec gal-cta-sec">
+    <div class="cardx gal-cta">
+      <h2 data-i18n="gal.cta.h"></h2>
+      <p class="sub" data-i18n="gal.cta.p"></p>
+      <div class="cta">
+        <a class="btn" href="index.html#book" data-i18n="gal.cta.b"></a>
+        <a class="btn o" href="index.html" data-i18n="gallery.back"></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dialog id="lb"><img id="lbi" alt=""></dialog>
+<footer id="ft"></footer>
+
+<script type="module" src="common.js"></script>
+<script type="module" src="gallery.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+/* ==========================================================
+   base.css — shared by every page (site + admin)
+   Tokens, header, buttons, forms, dialogs, toast, transitions
+   ========================================================== */
+:root{
+  --bg:#FAF5F0;--ink:#22141B;--mut:#6B5660;--card:#FFFFFF;--line:rgba(34,20,27,.12);
+  --acc:#B3204F;--acc-deep:#6D1233;--on:#fff;--ok:#1c9a5b;--bad:#d4254f;
+  --serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope","Segoe UI",Arial,sans-serif;
+  --e:cubic-bezier(.2,.7,.2,1);--r:22px;--pad:clamp(16px,4vw,48px);
+  --glow:color-mix(in srgb,var(--acc) 38%,transparent);
+  --halo:0 0 0 1px color-mix(in srgb,var(--acc) 30%,transparent),0 12px 34px -14px var(--glow);
+}
+[data-theme=dark]{
+  --bg:#150E13;--ink:#F4EAE6;--mut:#B9A5AC;--card:#21161D;--line:rgba(244,234,230,.16);
+  --acc:#E8789A;--acc-deep:#7a1f43;--on:#150E13;
+  --glow:color-mix(in srgb,var(--acc) 34%,transparent);
+}
+html{background:var(--bg);color-scheme:light}
+[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{min-height:100vh;display:flex;flex-direction:column;font:16px/1.65 var(--sans);background:var(--bg);color:var(--ink);transition:background .5s var(--e),color .5s var(--e),opacity .3s ease;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body>main{flex:1}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+
+/* Soft rose / lilac background (no yellow tones) */
+[data-theme=light] body{background:
+  radial-gradient(900px 560px at 88% -4%,rgba(238,170,196,.34),transparent 62%),
+  radial-gradient(780px 560px at -6% 44%,rgba(206,170,220,.20),transparent 62%),
+  radial-gradient(700px 480px at 60% 108%,rgba(238,186,204,.18),transparent 60%),var(--bg);background-attachment:fixed}
+[data-theme=dark] body{background:
+  radial-gradient(900px 560px at 88% -4%,rgba(232,120,154,.12),transparent 62%),
+  radial-gradient(780px 560px at -6% 44%,rgba(150,100,190,.10),transparent 62%),
+  radial-gradient(700px 480px at 60% 108%,rgba(232,120,154,.07),transparent 60%),var(--bg);background-attachment:fixed}
+
+/* ---------- Header ---------- */
+header.site{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:18px;padding:12px var(--pad);
+  background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid var(--line);transition:background .5s var(--e),border-color .5s var(--e)}
+.brand{display:flex;align-items:baseline;gap:10px;margin-right:auto;font:italic 600 28px/1 var(--serif);white-space:nowrap}
+.brand small{font:500 12px var(--sans);font-style:normal;color:var(--mut)}
+.brand a{font:500 13px var(--sans);font-style:normal;color:var(--mut);transition:color .3s}
+.brand a:hover{color:var(--acc)}
+nav.main{display:flex;gap:2px}
+nav.main a{padding:8px 14px;border-radius:99px;font-weight:500;font-size:15px;color:var(--mut);transition:color .35s var(--e),background .35s var(--e)}
+nav.main a:hover,nav.main a[aria-current=page],nav.main a[aria-current=location]{color:var(--acc);background:color-mix(in srgb,var(--acc) 10%,transparent)}
+.tools{display:flex;align-items:center;gap:10px}
+.ic{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--ink);cursor:pointer;font:600 13px var(--sans);transition:box-shadow .4s var(--e),border-color .4s var(--e),transform .3s var(--e)}
+.ic svg{display:block;margin:auto}
+.ic:hover{border-color:var(--acc);box-shadow:0 0 18px -2px var(--glow)}
+.ic:active{transform:scale(.94)}
+.burger{display:none;place-items:center;font-size:18px}
+@media(max-width:980px){
+  .burger{display:grid}
+  nav.main{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;padding:8px var(--pad) 16px;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 24px 40px -28px rgba(0,0,0,.35)}
+  nav.main.open{display:flex;animation:menuIn .35s var(--e) both}
+  nav.main a{padding:12px 6px;border-radius:0;border-bottom:1px solid var(--line)}
+  .brand small{display:none}
+}
+@keyframes menuIn{from{opacity:0;transform:translateY(-8px)}}
+@media(max-width:640px){#hcall{display:none}}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-block;font:600 15px var(--sans);padding:14px 28px;border-radius:99px;border:0;cursor:pointer;text-align:center;background:var(--acc);color:var(--on);transition:transform .35s var(--e),box-shadow .35s var(--e),filter .35s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 5px color-mix(in srgb,var(--acc) 18%,transparent),0 12px 30px -10px var(--acc)}
+.btn:active{transform:translateY(0) scale(.98);box-shadow:0 0 0 8px color-mix(in srgb,var(--acc) 22%,transparent),0 6px 16px -8px var(--acc);transition-duration:.12s}
+.btn.o{background:none;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.o:hover{box-shadow:inset 0 0 0 1.5px var(--acc),0 0 22px -8px var(--glow)}
+.btn.o:active{box-shadow:inset 0 0 0 1.5px var(--acc),0 0 0 6px color-mix(in srgb,var(--acc) 16%,transparent)}
+.btn.sm{padding:9px 20px;font-size:14px;white-space:nowrap}
+.btn[disabled]{opacity:.55;pointer-events:none}
+
+/* soft sheen across filled buttons */
+.btn:not(.o)::after{content:"";position:absolute;inset:0;transform:translateX(-120%);pointer-events:none;
+  background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transition:transform .9s var(--e)}
+.btn:not(.o):hover::after{transform:translateX(120%)}
+
+/* ---------- Click light (ripple) ---------- */
+.btn,.ch,.card,.ic,.w,.up,.chip span,.tabs button,.b{position:relative;overflow:hidden}
+.rip{--rc:color-mix(in srgb,var(--acc) 42%,transparent);position:absolute;z-index:3;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,var(--rc) 0%,transparent 68%);transform:scale(0);opacity:.9;animation:rip .8s var(--e) forwards}
+.btn:not(.o) .rip,.ch.main .rip,.b.p .rip,.tabs button[aria-selected=true] .rip,.chip input:checked+span .rip,.b[aria-pressed=true] .rip{--rc:rgba(255,255,255,.55)}
+@keyframes rip{to{transform:scale(1);opacity:0}}
+
+/* ---------- Forms ---------- */
+label{display:grid;gap:6px;font-size:14px;font-weight:600;color:var(--mut)}
+input,select,textarea{font:500 16px var(--sans);color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;max-width:100%;transition:border-color .35s var(--e),box-shadow .35s var(--e),background .35s}
+input:hover,select:hover,textarea:hover{border-color:color-mix(in srgb,var(--acc) 45%,var(--line))}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 4px color-mix(in srgb,var(--acc) 16%,transparent),0 8px 22px -12px var(--glow)}
+textarea{resize:vertical}
+
+/* ---------- Dialogs & toast ---------- */
+dialog{border:0;border-radius:16px;padding:0;max-width:92vw;max-height:92vh;background:none;overflow:visible}
+/* always dead-centre, independent of the browser's default dialog margins */
+dialog[open]{position:fixed!important;inset:auto!important;top:50%!important;left:50%!important;margin:0!important;translate:-50% -50%}
+dialog[open]{animation:dlgIn .4s var(--e) both}
+dialog img{display:block;max-width:92vw;max-height:88vh;border-radius:16px}
+dialog::backdrop{background:rgba(12,6,10,.72);backdrop-filter:blur(4px);animation:fadeOnly .4s ease both}
+@keyframes dlgIn{from{opacity:0;transform:translateY(14px) scale(.97)}}
+@keyframes fadeOnly{from{opacity:0}}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:60;max-width:90vw;padding:12px 22px;border-radius:99px;text-align:center;background:var(--ink);color:var(--bg);box-shadow:0 14px 34px -14px rgba(0,0,0,.5);animation:rise .45s var(--e)}
+@keyframes rise{from{opacity:0;transform:translate(-50%,14px)}}
+
+/* ---------- Footer ---------- */
+footer.site{padding:34px var(--pad);text-align:center;border-top:1px solid var(--line);display:flex;justify-content:center}
+.ft-addr{display:inline-flex;align-items:center;gap:10px;padding:12px 24px;border-radius:99px;
+  background:color-mix(in srgb,var(--acc) 8%,transparent);border:1px solid color-mix(in srgb,var(--acc) 25%,transparent);
+  color:var(--ink);font-weight:500;font-size:14.5px;max-width:42em;line-height:1.45;
+  transition:transform .35s var(--e),border-color .35s,box-shadow .35s,background .35s}
+.ft-addr::after{content:"↗";font-size:13px;opacity:.5;transition:transform .3s var(--e),opacity .3s}
+.ft-addr:hover{transform:translateY(-2px);border-color:var(--acc);background:color-mix(in srgb,var(--acc) 14%,transparent);box-shadow:0 0 28px -8px var(--acc)}
+.ft-addr:hover::after{transform:translate(2px,-2px);opacity:1}
+@media(max-width:560px){.ft-addr{font-size:13px;padding:10px 18px}}
+
+/* ---------- Loading + page transitions ---------- */
+body:not(.ready) main,body:not(.ready) #hd,body:not(.ready) #ft{opacity:0;pointer-events:none}
+body.ready main,body.ready #hd,body.ready #ft{opacity:1;transition:opacity .28s ease}
+@keyframes breathe{from{opacity:.5;letter-spacing:0}to{opacity:1;letter-spacing:.02em}}
+
+/* brand veil between pages: gentle fade, no hard wipe */
+.curtain{position:fixed;inset:0;z-index:100;display:grid;place-items:center;pointer-events:all;color:#fff;
+  background:radial-gradient(900px 600px at 50% 40%,color-mix(in srgb,var(--acc) 92%,#fff),var(--acc-deep));
+  font:italic 600 clamp(44px,9vw,92px) var(--serif)}
+.curtain span{animation:logoIn .8s .1s var(--e) both}
+.curtain.out{animation:veilIn .5s var(--e) both}
+.curtain.arrive{animation:veilOut .9s .25s var(--e) both}
+@keyframes veilIn{from{opacity:0}to{opacity:1}}
+@keyframes veilOut{from{opacity:1}to{opacity:0;visibility:hidden}}
+@keyframes logoIn{from{opacity:0;transform:translateY(10px) scale(.96)}}
+
+/* light page transition: short soft cross-fade, header stays put (no flash) */
+@view-transition{navigation:auto}
+html{background:var(--bg)}
+header.site{view-transition-name:site-header}
+::view-transition{background:var(--bg)}
+::view-transition-old(root){animation:vtOut .16s ease both}
+::view-transition-new(root){animation:vtIn .24s .04s ease both}
+::view-transition-group(site-header),
+::view-transition-old(site-header),
+::view-transition-new(site-header){animation:none}
+@keyframes vtOut{to{opacity:0}}
+@keyframes vtIn{from{opacity:0}}
+
+/* fallback for browsers without native page transitions (see common.js) */
+body.leaving{opacity:0}
+
+/* smooth colour change when the theme is switched */
+.theming,.theming *,.theming *::before,.theming *::after{transition:background-color .5s var(--e),border-color .5s var(--e),color .5s var(--e),box-shadow .5s var(--e),fill .5s!important}
+
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition:none!important}
+  .curtain,.rip{display:none}
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
+}
